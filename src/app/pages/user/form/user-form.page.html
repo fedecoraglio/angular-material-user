@@ -1,0 +1,31 @@
+<div class="row main-row">
+  <div col="12">
+    {{!!editUser ? 'Editing User Id '+ editUser.id : 'New User'}}</div>
+</div>
+<div class="row main-row">
+  <div class="col-12">
+    <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Firstname*</mat-label>
+        <input matInput formControlName="firstname" type="text"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Lastname*</mat-label>
+        <input matInput formControlName="lastname" type="text"/>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Email*</mat-label>
+        <input matInput formControlName="email" type="text"/>
+      </mat-form-field>
+
+      <button mat-raised-button color="warn" class="custom-btn" (click)="goToUserList()">Cancel</button>
+      <button mat-raised-button color="primary" [disabled]="!userForm.valid || wait">
+        {{wait ? 'Saving...' : 'Save'}}
+      </button>
+    </form>
+    <div class="alert alert-success info" role="alert" *ngIf="!!message">{{message}}</div>
+    <div class="alert alert-danger info" role="alert" *ngIf="!!errorMsg">{{message}}</div>
+  </div>
+</div>
